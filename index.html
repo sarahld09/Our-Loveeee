@@ -33,8 +33,12 @@
         .quiz-container { max-width: 500px; margin: 40px auto; background: rgba(77, 0, 12, 0.3); padding: 25px; border-radius: 15px; border: 2px solid var(--accent-color); }
         .quiz-option { background: var(--main-color); padding: 12px; margin: 10px 0; border-radius: 25px; cursor: pointer; transition: 0.2s; }
         .quiz-option:hover { background: var(--accent-color); }
-        .music-box { background: linear-gradient(45deg, #4d000c, #2a0006); border: 2px solid var(--accent-color); padding: 20px; border-radius: 20px; max-width: 550px; margin: 25px auto; }
-        audio { width: 100%; margin-top: 10px; }
+        
+        /* تصميم صندوق الموسيقى الجديد والمطور */
+        .music-box { background: linear-gradient(45deg, #4d000c, #2a0006); border: 2px solid var(--accent-color); padding: 25px; border-radius: 20px; max-width: 550px; margin: 25px auto; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .play-btn { background: linear-gradient(45deg, var(--gold-color), #ff9f1c); color: #1a0003; border: none; padding: 12px 30px; font-size: 18px; font-weight: bold; border-radius: 25px; cursor: pointer; transition: 0.3s; margin-top: 15px; box-shadow: 0 4px 15px rgba(255, 183, 3, 0.4); }
+        .play-btn:hover { transform: scale(1.05); }
+        
         .couple-header-name { font-size: 3.5rem; color: var(--gold-color); font-weight: bold; text-shadow: 3px 3px 6px rgba(0,0,0,0.6); margin: 10px 0; }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
@@ -61,11 +65,17 @@
             </p>
         </header>
 
-        <!-- صندوق الأغنية المضمونة برابط مباشر عالمي -->
+        <!-- صندوق الموسيقى السحري والذكي المربوط بملف جيت هاب المباشر -->
         <div class="music-box">
             <h3 style="margin: 0; color: var(--gold-color);">🎵 أغنيتنا الرومانسية المميزة 🥰</h3>
-            <p style="font-size: 14px; margin: 5px 0 10px 0;">شغل الأغنية يا روحي واستمتع بالمفاجأة 👇</p>
-            <audio controls id="bg-music" loop><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">متصفحك لا يدعم تشغيل الصوت.</audio>
+            <p style="font-size: 15px; margin: 10px 0;">إذا ما اشتغل الصوت تلقائي، اضغط على الزر الذهبي بالأسفل لتشغيل الأغنية فوراً يا روحي 👇</p>
+            
+            <audio id="bg-music" loop>
+                <source src="music.mp3" type="audio/mp3">
+                متصفحك لا يدعم تشغيل الصوت.
+            </audio>
+            
+            <button class="play-btn" id="music-toggle-btn" onclick="togglePlay()">▶️ تشغيل الأغنية الحين 💖</button>
         </div>
 
         <div class="counter-container">
@@ -94,7 +104,7 @@
         </div>
         <div class="long-card" onclick="toggleLongCard(this)">
             <h4>💌 اذا حبيت تشوف مسج يغيرلك مودك... 🥰 (اضغط هنا)</h4>
-            <div class="long-content">أنت مو بس حبيبي، أنت راحتي وابتسامتي والأمان اللي بلجأله من كل شي. كل مرة أحكي معك بحس الدنيا صارت أخف وأجمل، وكل مرة تضحك فيها بحس قلبي عم يضحك معك. ما بعرف كيف قدرت تصير بهالأهمية عندي، بس بعرف إنك الشخص اللي بيفرحني من كلمة، وبيوحشني من غياب دقيقة. أنت أجمل صدفة وأغلى إنسان دخل حياتي. وإذا كنت اليوم متضايقبدي منك تتذكر قديش أنت مميزوقديش في حدا قلبه متعلق فيك وبيحب تفاصيلك كلها، حتى الأشياء اللي يمكن أنت ما تنتبهلها بنفسك. تعال هون... وخلي هالعيون الحلوة تضحك، وخلي هالقلب الحلو يروق، لأنك تستاهل كل الحب والدلال والدنيا الحلوة كلها. بحبك حب كبير... أكبر من الكلام، وأكبر من أي وصف 💋❤️🔥</div>
+            <div class="long-content">أنت مو بس حبيبي، أنت راحتي وابتسامتي والأمان اللي بلجأله من كل شي. كل مرة أحكي معك بحس الدنيا صارت أخف وأجمل، وكل مرة تضحك فيها بحس قلبي عم يضحك معك. ما بعرف كيف قدرت تصير بهالأهمية عندي، بس بعرف إنك الشخص اللي بيفرحني من كلمة، وبيوحشني من غياب دقيقة. أنت أجمل صدفة وأغلى إنسان دخل حياتي. وإذا كنت اليوم متضايقبدي منك تتذكر قديش أنت مميزوقديش في حدا قلبه متعلق فيك وبيحب تفاصيلك كلها، حتى الأشياء اللي يمكن أنت ما تنتبهلها بنفسك. تعال هون... وخلي هالعيون الحلوة تضحك, وخلي هالقلب الحلو يروق، لأنك تستاهل كل الحب والدلال والدنيا الحلوة كلها. بحبك حب كبير... أكبر من الكلام، وأكبر من أي وصف 💋❤️🔥</div>
         </div>
         <div class="quiz-container" id="quiz-box">
             <h3>❓ اختبار المعرفة السريع والذكي 😉🔥</h3>
@@ -112,7 +122,45 @@
     </div>
     <script>
         window.addEventListener('DOMContentLoaded', () => { setTimeout(() => { document.getElementById('loader-screen').style.opacity = '0'; setTimeout(() => { document.getElementById('loader-screen').style.display = 'none'; document.getElementById('lock-screen').style.display = 'flex'; }, 500); }, 2500); });
-        function checkPassword() { const passwordInput = document.getElementById('password-input').value.trim(); if(passwordInput === "كوجي كوجي") { document.getElementById('lock-screen').style.display = 'none'; const cleverScreen = document.getElementById('clever-screen'); cleverScreen.style.display = 'flex'; setTimeout(() => { cleverScreen.style.display = 'none'; const mainContent = document.getElementById('main-content'); mainContent.style.display = 'block'; setTimeout(() => mainContent.style.opacity = '1', 50); setInterval(createHeart, 300); startTimer(); }, 2000); } else { document.getElementById('error-msg').style.display = 'block'; } }
+        
+        const audio = document.getElementById('bg-music');
+        const playBtn = document.getElementById('music-toggle-btn');
+
+        function checkPassword() { 
+            const passwordInput = document.getElementById('password-input').value.trim(); 
+            if(passwordInput === "كوجي كوجي") { 
+                document.getElementById('lock-screen').style.display = 'none'; 
+                const cleverScreen = document.getElementById('clever-screen'); 
+                cleverScreen.style.display = 'flex'; 
+                
+                // محاولة تشغيل الصوت فوراً بمجرد تخطي القفل الباسورد
+                audio.play().then(() => {
+                    playBtn.innerHTML = "⏸️ إيقاف الأغنية مؤقتاً 🎵";
+                }).catch(e => console.log("المتصفح حظر التشغيل التلقائي، بانتظار ضغط الزر."));
+
+                setTimeout(() => { 
+                    cleverScreen.style.display = 'none'; 
+                    const mainContent = document.getElementById('main-content'); 
+                    mainContent.style.display = 'block'; 
+                    setTimeout(() => mainContent.style.opacity = '1', 50); 
+                    setInterval(createHeart, 300); 
+                    startTimer(); 
+                }, 2000); 
+            } else { 
+                document.getElementById('error-msg').style.display = 'block'; 
+            } 
+        }
+
+        function togglePlay() {
+            if (audio.paused) {
+                audio.play();
+                playBtn.innerHTML = "⏸️ إيقاف الأغنية مؤقتاً 🎵";
+            } else {
+                audio.pause();
+                playBtn.innerHTML = "▶️ تشغيل الأغنية الحين 💖";
+            }
+        }
+
         function createHeart() { const heart = document.createElement('div'); heart.classList.add('heart'); heart.innerHTML = '❤️'; heart.style.left = Math.random() * 100 + 'vw'; heart.style.animationDuration = Math.random() * 3 + 3 + 's'; document.body.appendChild(heart); setTimeout(() => heart.remove(), 6000); }
         function startTimer() { const startDate = new Date(Date.UTC(2025, 2, 13, 13, 30, 13)); setInterval(() => { const now = new Date(); const diff = now - startDate; document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24)); document.getElementById('hours').innerText = Math.floor((diff / (1000 * 60 * 60)) % 24); document.getElementById('minutes').innerText = Math.floor((diff / 1000 / 60) % 60); document.getElementById('seconds').innerText = Math.floor((diff / 1000) % 60); }, 1000); }
         function toggleLongCard(card) { const content = card.querySelector('.long-content'); content.style.display = content.style.display === 'block' ? 'none' : 'block'; }
